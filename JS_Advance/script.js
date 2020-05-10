@@ -221,16 +221,13 @@ var obj = {
   city: "Mumbai",
 };
 
-
-function change(a,b)
-{
-  a = 55,
-  b.city='Amravati'
+function change(a, b) {
+  (a = 55), (b.city = "Amravati");
 }
 
 console.log(obj);
 console.log(age);
-change(age,obj);
+change(age, obj);
 console.log(obj);
 console.log(age);
 /*
@@ -239,3 +236,60 @@ console.log(age);
 { name: 'Shahid', city: 'Amravati' }
 22
 */
+
+//Functions are also objects in JS
+/*
+1. A function is an Instance of the Object Type
+2. A Function behaves like any other object
+3. We can store functioins in a variable
+4. We can Pass a Function as an Agrument to another function
+5. We can return a function from a function.
+*/
+
+//Passing Function as Argument
+
+var years = [1990, 1991, 1993, 1998, 1997,2013];
+
+function arrayCalcy(arr, fn) {
+  var arResult = [];
+  
+  for (var i = 0; i < arr.length; i++) {
+    arResult.push(fn(arr[i]));
+  }
+  return arResult;
+}
+
+function calcAge(el) {
+  var date = new Date();
+  var currentYear = date.getFullYear();
+  return currentYear - el;
+}
+
+var ageArray = arrayCalcy(years, calcAge);
+console.log(ageArray);
+//[ 30, 29, 27, 22, 23, 7 ]
+
+function isFullAGe(el)
+{
+  return el >= 18;
+};
+var legalAge = arrayCalcy(ageArray, isFullAGe);
+console.log(legalAge);
+// [ true, true, true, true, true, false ]
+
+function maxHeartRate(ele)
+{
+  if(ele>=18 && ele <=81)
+  {
+    return Math.round(206.9 - (0.67*ele));
+  }
+  else{
+    return -1;
+  }
+  
+}
+
+var heartArray = arrayCalcy(ageArray,maxHeartRate);
+console.log(heartArray);
+
+//  [ 187, 187, 189, 192, 191, -1 ]
