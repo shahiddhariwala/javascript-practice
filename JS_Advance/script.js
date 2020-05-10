@@ -346,3 +346,26 @@ Hello ,Usopp what do you do ?
 
 interviewQuestion('teacher')('SimpleBro');
 //\What subject do you teach , SimpleBro ?
+
+
+
+/////////////////////////////////////////
+//Immediately Invoked Function Expressions
+
+// IIFE hiding varable from outside just making it private
+
+function game()
+{
+  var score = Math.random()*10;
+  console.log(score >= 5);
+}
+game();
+
+
+(function(goodluck)
+{
+  var score = Math.random()*10;
+  console.log(score >= 5-goodluck);
+})(5);
+//false
+//true
