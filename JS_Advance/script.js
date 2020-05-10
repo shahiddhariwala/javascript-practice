@@ -415,3 +415,107 @@ interviewQuestion("teacher")("shahid");
 // What subject do you teach , shahid ?
 interviewQuestion("designer")("Zain");
 // Zain, can you please explain me what UX design is ?
+
+////////////////////////////////////////////
+// Testing Bind Call and Apply
+
+var shahid = {
+  name: "Shahid",
+  age: 22,
+  job: "Engineer",
+  presentation: function (style, timeOfDay) {
+    switch (style) {
+      case "formal":
+        console.log(
+          "Good " +
+            timeOfDay +
+            " Ladies and Gentlemen! I'm " +
+            this.name +
+            ", I'm " +
+            this.job +
+            " and I'm " +
+            this.age +
+            " years old"
+        );
+        break;
+      case "friendly":
+        console.log(
+          "Heya Wasuppp I'm " +
+            this.name +
+            ", I'm " +
+            this.job +
+            " and I'm " +
+            this.age +
+            " years old have a nice " +
+            timeOfDay
+        );
+        break;
+      default:
+        console.log("Boring " + this.name);
+        break;
+    }
+  },
+};
+var neha = {
+  name: "Neha",
+  age: "24",
+  job: "Teacher",
+};
+
+shahid.presentation("formal", "morning");
+//Good morning Ladies and Gentlemen! I'm Shahid, I'm Engineer and I'm 22 years old
+
+// using call to borrow the method
+shahid.presentation.call(neha, "friendly", "morning");
+//eya Wasuppp I'm Neha, I'm Teacher and I'm 24 years old have a nice morning
+
+// we can also use apply , its passes array as argument, but our function does not support array arguments
+// shahid.presentation.apply(neha,['friendly','morning']);
+
+//bind gives us function in return with preset arguments(carrying )
+var friendlyShahid = shahid.presentation.bind(shahid, "friendly");
+
+friendlyShahid("morning");
+// Heya Wasuppp I'm Shahid, I'm Engineer and I'm 22 years old have a nice morning
+
+friendlyShahid("night");
+//Heya Wasuppp I'm Shahid, I'm Engineer and I'm 22 years old have a nice night
+
+var nehaFormal = shahid.presentation.bind(neha, "formal");
+nehaFormal("night");
+nehaFormal("morning");
+
+/*
+Good night Ladies and Gentlemen! I'm Neha, I'm Teacher and I'm 24 years old
+Good morning Ladies and Gentlemen! I'm Neha, I'm Teacher and I'm 24 years old
+*/
+
+var years = [1990, 1991, 1993, 1998, 1997, 2013];
+
+function arrayCalcy(arr, fn) {
+  var arResult = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    arResult.push(fn(arr[i]));
+  }
+  return arResult;
+}
+
+function calcAge(el) {
+  var date = new Date();
+  var currentYear = date.getFullYear();
+  return currentYear - el;
+}
+
+function isFullAge(limit, el) {
+  return el >= limit;
+}
+
+var ages = arrayCalcy(years, calcAge);
+var fullJapan = arrayCalcy(ages, isFullAge.bind(this, 23));
+console.log(ages);
+console.log(fullJapan);
+/*
+[ 30, 29, 27, 22, 23, 7 ]
+[ true, true, true, false, true, false ]
+*/
