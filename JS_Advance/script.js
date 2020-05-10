@@ -311,13 +311,13 @@ function interviewQuestion(job) {
   }
 }
 
-var teacherQuestion = interviewQuestion('teacher');
+var teacherQuestion = interviewQuestion("teacher");
 teacherQuestion("Shahid");
 teacherQuestion("Sallu");
 teacherQuestion("Arbaaz");
 teacherQuestion("Zain");
 
-var designerQuestion = interviewQuestion('designer');
+var designerQuestion = interviewQuestion("designer");
 designerQuestion("Zain");
 designerQuestion("rahul");
 designerQuestion("Luffy");
@@ -344,28 +344,74 @@ Hello ,Franky what do you do ?
 Hello ,Usopp what do you do ?
 */
 
-interviewQuestion('teacher')('SimpleBro');
+interviewQuestion("teacher")("SimpleBro");
 //\What subject do you teach , SimpleBro ?
-
-
 
 /////////////////////////////////////////
 //Immediately Invoked Function Expressions
 
 // IIFE hiding varable from outside just making it private
 
-function game()
-{
-  var score = Math.random()*10;
+function game() {
+  var score = Math.random() * 10;
   console.log(score >= 5);
 }
 game();
 
-
-(function(goodluck)
-{
-  var score = Math.random()*10;
-  console.log(score >= 5-goodluck);
+(function (goodluck) {
+  var score = Math.random() * 10;
+  console.log(score >= 5 - goodluck);
 })(5);
 //false
 //true
+
+/////////////////////////////////////////
+//Closures
+
+function retirement(retirementAge) {
+  var a = " years left untill retirement";
+  return function (yearOfBirth) {
+    var date = new Date();
+    var age = date.getFullYear() - yearOfBirth;
+    console.log(retirementAge - age + a);
+  };
+}
+
+var retireementUS = retirement(66);
+retireementUS(1990);
+retirement(66)(1990);
+/*
+36 years left untill retireement
+36 years left untill retireement
+
+Holly molly, how it is accessing var 'a' of outer function x(
+
+  hahah its because of JS closures
+
+  An inner function has always access to the variables and paarameter of its outer function , 
+  even after the outer function has returned
+
+
+*/
+
+function interviewQuestion(job) {
+  return function (name) {
+    //job is capatured varaible, power of closure
+    switch (job) {
+      case "designer":
+        console.log(name + ", can you please explain me what UX design is ?");
+        break;
+      case "teacher":
+        console.log("What subject do you teach , " + name + " ?");
+        break;
+      default:
+        console.log("Hello ," + name + " what do you do ?");
+        break;
+    }
+  };
+}
+
+interviewQuestion("teacher")("shahid");
+// What subject do you teach , shahid ?
+interviewQuestion("designer")("Zain");
+// Zain, can you please explain me what UX design is ?
