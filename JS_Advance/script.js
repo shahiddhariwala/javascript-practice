@@ -76,6 +76,7 @@ Person2.prototype.calculateAge= function()
     console.log(presentYear-this.yearOfBirth);
 };
 
+
 var shahid = new Person2('Shahid Dhariwala',1998,'Engineer');
 console.log(shahid);
 // Person { name: 'Shahid DHariwala', yearOfBirth: 1998, job: 'Engineer' }
@@ -105,3 +106,19 @@ Person2 { name: 'Zain', yearOfBirth: 1997, job: 'Artist' }
 Person2 { name: 'Salman', yearOfBirth: 1993, job: 'Senior Engineer' }
 27
 */
+
+// we can also add property using prototype, but not recommended
+//its not part of object but its inherited
+Person2.prototype.lastName='Dhariwala';
+console.log(zain);
+console.log(zain.lastName);
+console.log(sallu.lastName);
+console.log(sallu);
+/*
+27
+Person2 { name: 'Zain', yearOfBirth: 1997, job: 'Artist' }
+Dhariwala
+Dhariwala
+Person2 { name: 'Salman', yearOfBirth: 1993, job: 'Senior Engineer' }
+*/
+
