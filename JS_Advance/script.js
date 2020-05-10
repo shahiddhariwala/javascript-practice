@@ -1,10 +1,9 @@
 // Function Constructor
 
-var shahid =
-{
-  name: 'Shahid',
+var shahid = {
+  name: "Shahid",
   yearOfBirth: 1998,
-  job: 'Engineer'
+  job: "Engineer",
 };
 console.log(shahid);
 // { name: 'Shahid', yearOfBirth: 1998, job: 'Engineer' }
@@ -16,23 +15,23 @@ var Person = function (name, yearOfBirth, job) {
     var date = new Date();
     var presentYear = parseInt(date.getFullYear(), 10);
     console.log(presentYear - this.yearOfBirth);
-  }
-}
+  };
+};
 
-var shahid = new Person('Shahid DHariwala', 1998, 'Engineer');
+var shahid = new Person("Shahid DHariwala", 1998, "Engineer");
 console.log(shahid);
 // Person { name: 'Shahid DHariwala', yearOfBirth: 1998, job: 'Engineer' }
 
 shahid.calculateAge();
 //22
 
-var neha = new Person('Neha', 1998, 'Teacher');
+var neha = new Person("Neha", 1998, "Teacher");
 console.log(neha);
 
-var zain = new Person('Zain', 1997, 'Artist');
+var zain = new Person("Zain", 1997, "Artist");
 console.log(zain);
 
-var sallu = new Person('Salman', 1993, 'Senior Engineer');
+var sallu = new Person("Salman", 1993, "Senior Engineer");
 console.log(sallu);
 
 /*
@@ -56,15 +55,13 @@ Person {
   this will cause more memory use, inorder to avoid this we can use inheritance
 */
 
-
 //Using prototype
 
 var Person2 = function (name, yearOfBirth, job) {
   this.name = name;
   this.yearOfBirth = yearOfBirth;
   this.job = job;
-
-}
+};
 
 Person2.prototype.calculateAge = function () {
   var date = new Date();
@@ -72,23 +69,22 @@ Person2.prototype.calculateAge = function () {
   console.log(presentYear - this.yearOfBirth);
 };
 
-
-var shahid = new Person2('Shahid Dhariwala', 1998, 'Engineer');
+var shahid = new Person2("Shahid Dhariwala", 1998, "Engineer");
 console.log(shahid);
 // Person { name: 'Shahid DHariwala', yearOfBirth: 1998, job: 'Engineer' }
 
 shahid.calculateAge();
 //22
 
-var neha = new Person2('Neha', 1998, 'Teacher');
+var neha = new Person2("Neha", 1998, "Teacher");
 console.log(neha);
 neha.calculateAge();
 
-var zain = new Person2('Zain', 1997, 'Artist');
+var zain = new Person2("Zain", 1997, "Artist");
 console.log(zain);
 zain.calculateAge();
 
-var sallu = new Person2('Salman', 1993, 'Senior Engineer');
+var sallu = new Person2("Salman", 1993, "Senior Engineer");
 console.log(sallu);
 sallu.calculateAge();
 
@@ -105,7 +101,7 @@ Person2 { name: 'Salman', yearOfBirth: 1993, job: 'Senior Engineer' }
 
 // we can also add property using prototype, but not recommended
 //its not part of object but its inherited
-Person2.prototype.lastName = 'Dhariwala';
+Person2.prototype.lastName = "Dhariwala";
 console.log(zain);
 console.log(zain.lastName);
 console.log(sallu.lastName);
@@ -120,34 +116,29 @@ Person2 { name: 'Salman', yearOfBirth: 1993, job: 'Senior Engineer' }
 
 //Prototype Chain
 
-console.log(shahid.hasOwnProperty('job'));
+console.log(shahid.hasOwnProperty("job"));
 // true
-console.log(shahid.hasOwnProperty('lastName'));
-// false because we are inheriting it 
-
+console.log(shahid.hasOwnProperty("lastName"));
+// false because we are inheriting it
 
 console.log(shahid instanceof Person2); //true
 console.log(shahid instanceof Person); // false coercion
 
-
 // Creating Object using Object.create
 
-
-
-var personProto =
-{
+var personProto = {
   calculateAge: function () {
     var date = new Date();
     var presentYear = parseInt(date.getFullYear(), 10);
     console.log(presentYear - this.yearOfBirth);
-  }
+  },
 };
 
 var shahid = Object.create(personProto);
 console.log(shahid); // {} empty
-shahid.name = 'Shahid';
-shahid.yearOfBirth = '1998';
-shahid.job = 'Engineer';
+shahid.name = "Shahid";
+shahid.yearOfBirth = "1998";
+shahid.job = "Engineer";
 console.log(shahid);
 // { name: 'Shahid', yearOfBirth: '1998', job: 'Engineer' }
 /*
@@ -182,10 +173,9 @@ set __proto__: ƒ __proto__()
 
 */
 var nene = Object.create(personProto, {
-
-  name: { value: 'Nene' },
+  name: { value: "Nene" },
   yearOfBirth: { value: 1998 },
-  job: { value: 'Teacher' }
+  job: { value: "Teacher" },
 });
 nene.calculateAge(); //22
 
@@ -197,3 +187,55 @@ When we create Object using “Object.create”, the Object passed as parameter 
  of the new Object.
 */
 
+// Primitives vs Objects
+
+//Primitives
+var a = 23;
+var b = a;
+a = 143;
+console.log(a);
+console.log(b);
+//143
+//23
+
+var obj1 = {
+  name: "Shahid",
+  age: 22,
+};
+
+//Objects
+var obj2 = obj1;
+obj2.age = 55;
+console.log(obj1);
+console.log(obj2);
+/*
+{ name: 'Shahid', age: 55 }
+{ name: 'Shahid', age: 55 }
+we didnt create new object we just created reference to point to same object
+*/
+
+//Functions
+var age = 22;
+var obj = {
+  name: "Shahid",
+  city: "Mumbai",
+};
+
+
+function change(a,b)
+{
+  a = 55,
+  b.city='Amravati'
+}
+
+console.log(obj);
+console.log(age);
+change(age,obj);
+console.log(obj);
+console.log(age);
+/*
+{ name: 'Shahid', city: 'Mumbai' }
+22
+{ name: 'Shahid', city: 'Amravati' }
+22
+*/
