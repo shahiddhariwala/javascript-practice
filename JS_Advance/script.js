@@ -248,11 +248,11 @@ console.log(age);
 
 //Passing Function as Argument
 
-var years = [1990, 1991, 1993, 1998, 1997,2013];
+var years = [1990, 1991, 1993, 1998, 1997, 2013];
 
 function arrayCalcy(arr, fn) {
   var arResult = [];
-  
+
   for (var i = 0; i < arr.length; i++) {
     arResult.push(fn(arr[i]));
   }
@@ -269,27 +269,80 @@ var ageArray = arrayCalcy(years, calcAge);
 console.log(ageArray);
 //[ 30, 29, 27, 22, 23, 7 ]
 
-function isFullAGe(el)
-{
+function isFullAGe(el) {
   return el >= 18;
-};
+}
 var legalAge = arrayCalcy(ageArray, isFullAGe);
 console.log(legalAge);
 // [ true, true, true, true, true, false ]
 
-function maxHeartRate(ele)
-{
-  if(ele>=18 && ele <=81)
-  {
-    return Math.round(206.9 - (0.67*ele));
-  }
-  else{
+function maxHeartRate(ele) {
+  if (ele >= 18 && ele <= 81) {
+    return Math.round(206.9 - 0.67 * ele);
+  } else {
     return -1;
   }
-  
 }
 
-var heartArray = arrayCalcy(ageArray,maxHeartRate);
+var heartArray = arrayCalcy(ageArray, maxHeartRate);
 console.log(heartArray);
 
 //  [ 187, 187, 189, 192, 191, -1 ]
+
+// Function Returning Function
+
+function interviewQuestion(job) {
+  switch (job) {
+    case "designer":
+      return function (name) {
+        console.log(name + ", can you please explain me what UX design is ?");
+      };
+      break;
+    case "teacher":
+      return function (name) {
+        console.log("What subject do you teach , " + name + " ?");
+      };
+      break;
+    default:
+      return function (name) {
+        console.log("Hello ," + name + " what do you do ?");
+      };
+      break;
+  }
+}
+
+var teacherQuestion = interviewQuestion('teacher');
+teacherQuestion("Shahid");
+teacherQuestion("Sallu");
+teacherQuestion("Arbaaz");
+teacherQuestion("Zain");
+
+var designerQuestion = interviewQuestion('designer');
+designerQuestion("Zain");
+designerQuestion("rahul");
+designerQuestion("Luffy");
+designerQuestion("Zoro");
+
+var huhQuestion = interviewQuestion();
+huhQuestion("Leonardus");
+huhQuestion("Shinchan");
+huhQuestion("Franky");
+huhQuestion("Usopp");
+
+/*
+What subject do you teach , Shahid ?
+What subject do you teach , Sallu ?
+What subject do you teach , Arbaaz ?
+What subject do you teach , Zain ?
+Zain, can you please explain me what UX design is ?
+rahul, can you please explain me what UX design is ?
+Luffy, can you please explain me what UX design is ?
+Zoro, can you please explain me what UX design is ?
+Hello ,Leonardus what do you do ?
+Hello ,Shinchan what do you do ?
+Hello ,Franky what do you do ?
+Hello ,Usopp what do you do ?
+*/
+
+interviewQuestion('teacher')('SimpleBro');
+//\What subject do you teach , SimpleBro ?
