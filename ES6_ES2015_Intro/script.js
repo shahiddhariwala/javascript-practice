@@ -470,3 +470,36 @@ isFullAge6(16, 1990, 1999, 1965, 2016, 1987);
 
 
 
+
+// ES5
+/* function DhariwalaPerson(firstName, yearOfBirth, lastName, nationality) {
+    /* 
+    lastName === undefined ? lastName = 'Dhariwala' : lastName = lastName;
+    nationality === undefined ? nationality = 'Indian' : nationality = nationality; 
+    
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+/* 
+DhariwalaPerson {firstName: "Shahid", lastName: undefined, yearOfBirth: 1990, nationality: undefined}
+DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nationality: "American"} */ 
+
+
+//ES6
+function DhariwalaPerson(firstName, yearOfBirth, lastName = 'Dhariwala', nationality = 'Indian') {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+
+
+var shahiddp = new DhariwalaPerson('Shahid', 1990);
+var zaina = new DhariwalaPerson('Zaina', 1983, 'Thokar', 'American');
+console.log(shahiddp);
+console.log(zaina);
+/* 
+DhariwalaPerson {firstName: "Shahid", lastName: "Dhariwala", yearOfBirth: 1990, nationality: "Indian"}
+DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nationality: "American"} */
