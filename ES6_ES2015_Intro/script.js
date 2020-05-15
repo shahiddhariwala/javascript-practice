@@ -15,7 +15,6 @@ name5 = "Shahid Memon";
 console.log(name5);
 //Shahid Memon
 
-
 // ES6
 const name6 = "Shahid Dhariwala";
 let age6 = 23;
@@ -79,7 +78,6 @@ for (var i = 0; i < 5; i++) {
 console.log(i);
 // 5 new value assigned to i
 
-
 /////////////////////////////////
 // Blocks and IIFEs
 
@@ -96,7 +94,6 @@ console.log(a + b);
             ^
 
 ReferenceError: a is not defined*/
-
 
 console.log(c);
 //3 since c is 'var'
@@ -152,10 +149,8 @@ true
 true
 Shahid Shahid Shahid Shahid Shahid */
 
-
 //////////////////////////////
 //Arrow function
-
 
 const years = [1998, 1990, 1993, 1996];
 
@@ -166,13 +161,13 @@ var ages5 = years.map(function (curr) {
 console.log(ages5);
 
 //ES6
-let ages6 = years.map(es => 2020 - es);
+let ages6 = years.map((es) => 2020 - es);
 console.log(ages6);
 /* 
 [ 22, 30, 27, 24 ]
 [ 22, 30, 27, 24 ] */
 
-ages6 = years.map((el, index) => `${index} Age : ${2020-el} `);
+ages6 = years.map((el, index) => `${index} Age : ${2020 - el} `);
 console.log(ages6);
 
 //[ '0 Age : 22 ', '1 Age : 30 ', '2 Age : 27 ', '3 Age : 24 ' ]
@@ -181,8 +176,7 @@ ages6 = years.map((el, index) => {
     let date = new Date();
     let year = date.getFullYear();
     const age = year - el;
-    return `new ${index} Age : ${age} `
-
+    return `new ${index} Age : ${age} `;
 });
 console.log(ages6);
 /*
@@ -192,57 +186,58 @@ console.log(ages6);
   'new 3 Age : 24 ' ]
   */
 
-
 //Arrow function dont have their own this, insetad they use 'this' of fucntion they are called in
 //called as Lexical this
-
 
 //ES5
 
 var box5 = {
-    color: 'green',
+    color: "green",
     position: 1,
     clickMe: function () {
         //When funbction is called , it doesnot share local this, its has access to global thios, there for color and position will be undefined
         // to tackle this we can store local this to some variable
         var self = this;
-        document.querySelector(".green").addEventListener('click', function () {
-            var str = "ES-5 This is box number " + self.position + " and it is " + self.color;
+        document.querySelector(".green").addEventListener("click", function () {
+            var str =
+                "ES-5 This is box number " + self.position + " and it is " + self.color;
             window.alert(str);
         });
-    }
-}
+    },
+};
 
 box5.clickMe();
-
 
 //ES6
 
 var box6 = {
-    color: 'green',
+    color: "green",
     position: 1,
     clickMe: function () {
         //Arrow function uses lexical this of surrounding function
-        document.querySelector(".green").addEventListener('click', () => {
-            var str = "ES-6 This is box number " + this.position + " and it is " + this.color;
+        document.querySelector(".green").addEventListener("click", () => {
+            var str =
+                "ES-6 This is box number " + this.position + " and it is " + this.color;
             window.alert(str);
         });
-    }
-}
+    },
+};
 
 box6.clickMe();
 
 function Person(name) {
     this.name = name;
-};
+}
 
-var friends = ["Zain","Neha","Luffy","Zoro"];
+var friends = ["Zain", "Neha", "Luffy", "Zoro"];
 //ES5
 
 Person.prototype.myFriends5 = function (friends) {
-    var arr = friends.map(function (el) {
-        return this.name + " is a friend with " + el;
-    }.bind(this));
+    var arr = friends.map(
+        function (el) {
+            return this.name + " is a friend with " + el;
+        }.bind(this)
+    );
     console.log(arr);
 };
 
@@ -255,8 +250,7 @@ new Person("Shahid").myFriends5(friends);
 */
 
 Person.prototype.myFriends6 = function (friends) {
-    var arr = friends.map((el =>
-        `${this.name} is a friend with ${el}`));
+    var arr = friends.map((el) => `${this.name} is a friend with ${el}`);
 
     console.log(arr);
 };
@@ -274,40 +268,110 @@ new Person("Sanji").myFriends6(friends);
 
 //ES5
 
-var shahid = ['Shahid',22];
+var shahid = ["Shahid", 22];
 var name5 = shahid[0];
 var age5 = shahid[1];
 
 //ES6
-const[named6,aged6] = ['Shahid',22];
+const [named6, aged6] = ["Shahid", 22];
 
 console.log(`${named6} Age is ${aged6} `);
 
-//Shahid Age is 22 
+//Shahid Age is 22
 
-const obj =
-{
-    firstNamed : 'Shahid',
-    lastNamed : 'Dhariwala'
+const obj = {
+    firstNamed: "Shahid",
+    lastNamed: "Dhariwala",
 };
 
-const {firstNamed,lastNamed} = obj;
+const {
+    firstNamed,
+    lastNamed
+} = obj;
 console.log(`${firstNamed} ${lastNamed}`);
 // Shahid Dhariwala
-const {firstNamed : a, lastNamed : b} = obj;
+const {
+    firstNamed: a,
+    lastNamed: b
+} = obj;
 
 console.log(`${a} ${b}`);
-// Shahid Dhariwala 
+// Shahid Dhariwala
 
-
-function calcRetirementAge(year)
-{
+function calcRetirementAge(year) {
     const age = new Date().getFullYear() - year;
-    return [age,65-age];
+    return [age, 65 - age];
 }
 
-const [agedd,timeTORetire] = calcRetirementAge(1998);
+const [agedd, timeTORetire] = calcRetirementAge(1998);
 
 console.log(`${agedd} ${timeTORetire}`);
 // 22 43
+
+///////////////////////////////////
+// Arrays
+
+const boxes = document.querySelectorAll(".box");
+
+//ES5
+
+var boxesArr5 = Array.prototype.slice.call(boxes);
+boxesArr5.forEach(function(curr)
+{
+    curr.style.backgroundColor = 'grey';
+});
+
+
+//ES6
+
+/*  const boxesArr6 = Array.from(boxes);
+ boxesArr6.forEach(curr =>  curr.style.backgroundColor = 'grey');
+
+  */
+ const boxesArr6 = Array.from(boxes);
+Array.from(boxes).forEach((curr) => (curr.style.backgroundColor = "grey"));
+
+//ES5
+for(var i = 0 ; i < boxesArr5.length;i++)
+{
+    if(boxesArr5[i].className==='box blue')
+    {
+        continue;
+    }
+    boxesArr5[i].textContent = 'I am Gray';
+
+}
+
+//ES6
+for(const curr of boxesArr6)
+{
+    if(curr.className.includes('blue'))
+    {
+        continue;
+    }
+    curr.textContent = "I am not blue";
+}
+
+//ES5 
+
+var ages = [12,13,1,4,16,19];
+var fullAge = ages.map(function(cur)
+{
+    return cur > 18;
+});
+
+console.log(fullAge);
+console.log(fullAge.indexOf(true));
+console.log(ages[fullAge.indexOf(true)]);
+/*
+(6) [false, false, false, false, false, true]
+ 5
+ 19
+*/
+
+
+//ES6
+console.log(ages.findIndex(cur => cur >=18)); //5
+console.log(ages.find(cur => cur >=18)); //19
+
 
