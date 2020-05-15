@@ -316,8 +316,7 @@ const boxes = document.querySelectorAll(".box");
 //ES5
 
 var boxesArr5 = Array.prototype.slice.call(boxes);
-boxesArr5.forEach(function(curr)
-{
+boxesArr5.forEach(function (curr) {
     curr.style.backgroundColor = 'grey';
 });
 
@@ -328,14 +327,12 @@ boxesArr5.forEach(function(curr)
  boxesArr6.forEach(curr =>  curr.style.backgroundColor = 'grey');
 
   */
- const boxesArr6 = Array.from(boxes);
+const boxesArr6 = Array.from(boxes);
 Array.from(boxes).forEach((curr) => (curr.style.backgroundColor = "grey"));
 
 //ES5
-for(var i = 0 ; i < boxesArr5.length;i++)
-{
-    if(boxesArr5[i].className==='box blue')
-    {
+for (var i = 0; i < boxesArr5.length; i++) {
+    if (boxesArr5[i].className === 'box blue') {
         continue;
     }
     boxesArr5[i].textContent = 'I am Gray';
@@ -343,10 +340,8 @@ for(var i = 0 ; i < boxesArr5.length;i++)
 }
 
 //ES6
-for(const curr of boxesArr6)
-{
-    if(curr.className.includes('blue'))
-    {
+for (const curr of boxesArr6) {
+    if (curr.className.includes('blue')) {
         continue;
     }
     curr.textContent = "I am not blue";
@@ -354,9 +349,8 @@ for(const curr of boxesArr6)
 
 //ES5 
 
-var ages = [12,13,1,4,16,19];
-var fullAge = ages.map(function(cur)
-{
+var ages = [12, 13, 1, 4, 16, 19];
+var fullAge = ages.map(function (cur) {
     return cur > 18;
 });
 
@@ -371,8 +365,8 @@ console.log(ages[fullAge.indexOf(true)]);
 
 
 //ES6
-console.log(ages.findIndex(cur => cur >=18)); //5
-console.log(ages.find(cur => cur >=18)); //19
+console.log(ages.findIndex(cur => cur >= 18)); //5
+console.log(ages.find(cur => cur >= 18)); //19
 
 
 ////////////////////////////////
@@ -380,18 +374,17 @@ console.log(ages.find(cur => cur >=18)); //19
 
 
 
-var addFOurAges = function(a,b,c,d)
-{
-    return a+b+c+d;
+var addFOurAges = function (a, b, c, d) {
+    return a + b + c + d;
 };
 
-var sum1 = addFOurAges(19,18,22,23);
+var sum1 = addFOurAges(19, 18, 22, 23);
 console.log(sum1);
 //82
 
 //ES5
-var agesso = [19,18,22,23];
-var sum2 = addFOurAges.apply(null,agesso);
+var agesso = [19, 18, 22, 23];
+var sum2 = addFOurAges.apply(null, agesso);
 console.log(sum2);
 //82
 
@@ -400,17 +393,17 @@ const sum3 = addFOurAges(...agesso);
 console.log(sum3);
 //82
 
-let  luffyFamily = ['Luffy','Zoro','Nami','Sanji','Ussop'];
-let  rogerFamily = ['Roger','Rayleigh','Crocus','Shank','Buggy'];
+let luffyFamily = ['Luffy', 'Zoro', 'Nami', 'Sanji', 'Ussop'];
+let rogerFamily = ['Roger', 'Rayleigh', 'Crocus', 'Shank', 'Buggy'];
 
-let pirateKingFamily = [...luffyFamily,'Shahid',...rogerFamily];
+let pirateKingFamily = [...luffyFamily, 'Shahid', ...rogerFamily];
 console.log(pirateKingFamily);
 
 // ["Luffy", "Zoro", "Nami", "Sanji", "Ussop", "Shahid", "Roger", "Rayleigh", "Crocus", "Shank", "Buggy"]
 
 const h = document.querySelector('h1');
-const  boxeso = document.querySelectorAll('.box');
-const  allSo = [h,...boxeso];
+const boxeso = document.querySelectorAll('.box');
+const allSo = [h, ...boxeso];
 
 Array.from(allSo).forEach(curr => curr.style.color = 'orange');
 
@@ -425,8 +418,8 @@ Array.from(allSo).forEach(curr => curr.style.color = 'orange');
 function isFullAge5() {
     //console.log(arguments);
     var argsArr = Array.prototype.slice.call(arguments);
-    
-    argsArr.forEach(function(cur) {
+
+    argsArr.forEach(function (cur) {
         console.log((2016 - cur) >= 18);
     })
 }
@@ -438,7 +431,7 @@ function isFullAge5() {
 
 //ES6
 function isFullAge6(...years) {
-    years.forEach(cur => console.log( (2016 - cur) >= 18));
+    years.forEach(cur => console.log((2016 - cur) >= 18));
 }
 
 isFullAge6(1990, 1999, 1965, 2016, 1987);
@@ -448,7 +441,7 @@ isFullAge6(1990, 1999, 1965, 2016, 1987);
 function isFullAge5(limit) {
     var argsArr = Array.prototype.slice.call(arguments, 1);
 
-    argsArr.forEach(function(cur) {
+    argsArr.forEach(function (cur) {
         console.log((2016 - cur) >= limit);
     })
 }
@@ -460,7 +453,7 @@ isFullAge5(1990, 1999, 1965, 2016, 1987);
 
 //ES6
 function isFullAge6(limit, ...years) {
-    years.forEach(cur => console.log( (2016 - cur) >= limit));
+    years.forEach(cur => console.log((2016 - cur) >= limit));
 }
 
 isFullAge6(16, 1990, 1999, 1965, 2016, 1987);
@@ -484,7 +477,7 @@ isFullAge6(16, 1990, 1999, 1965, 2016, 1987);
 }
 /* 
 DhariwalaPerson {firstName: "Shahid", lastName: undefined, yearOfBirth: 1990, nationality: undefined}
-DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nationality: "American"} */ 
+DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nationality: "American"} */
 
 
 //ES6
@@ -503,3 +496,91 @@ console.log(zaina);
 /* 
 DhariwalaPerson {firstName: "Shahid", lastName: "Dhariwala", yearOfBirth: 1990, nationality: "Indian"}
 DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nationality: "American"} */
+
+/////////////////////////////////
+// Maps
+
+const question = new Map();
+question.set('question', 'What is the official name of the latest major JavaScript version?');
+question.set(1, 'ES5');
+question.set(2, 'ES6');
+question.set(3, 'ES2015');
+question.set(4, 'ES7');
+question.set('correct', 3);
+question.set(true, 'Correct answer :D');
+question.set(false, 'Wrong, please try again!');
+
+console.log(question);
+
+/*
+Map(8) {"question" => "What is the official name of the latest major JavaScript version?", 1 => "ES5", 2 => "ES6", 3 => "ES2015", 4 => "ES7", …}
+[[Entries]]
+0: {"question" => "What is the official name of the latest major JavaScript version?"}
+1: {1 => "ES5"}
+2: {2 => "ES6"}
+3: {3 => "ES2015"}
+4: {4 => "ES7"}
+5: {"correct" => 3}
+6: {true => "Correct answer :D"}
+7: {false => "Wrong, please try again!"}
+size: (...)
+__proto__: Map
+*/
+
+console.log(question.get('question'));
+console.log(question.size);
+/*
+What is the official name of the latest major JavaScript version?
+8
+*/
+question.delete(4);
+console.log(question.get(4));
+//undefined
+
+question.set(4, 'ES7');
+console.log(question.has(4));
+//true
+
+question.forEach((value, key) => console.log(`${key} \t\t ${value}`));
+
+/*
+question 		 What is the official name of the latest major JavaScript version?
+ 1 		 ES5
+ 2 		 ES6
+ 3 		 ES2015
+ correct 		 3
+ true 		 Correct answer :D
+ false 		 Wrong, please try again!
+ 4 		 ES7
+*/
+
+for (let [key, value] of question.entries()) {
+    console.log(`${key} \t\t ${value}`);
+}
+
+/*
+question 		 What is the official name of the latest major JavaScript version?
+ 1 		 ES5
+ 2 		 ES6
+ 3 		 ES2015
+ correct 		 3
+ true 		 Correct answer :D
+ false 		 Wrong, please try again!
+ 4 		 ES7
+*/
+
+for (let [key, value] of question.entries()) {
+    if (typeof (key) === 'number') {
+        console.log(`${key} \t\t ${value}`);
+    }
+}
+/*
+1 		 ES5
+ 2 		 ES6
+ 3 		 ES2015
+ 4 		 ES7*/
+
+// const ans = parseInt(prompt('Write the correct answer'));
+// console.log(question.get(ans === question.get('correct')));
+
+
