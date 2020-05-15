@@ -268,3 +268,46 @@ new Person("Sanji").myFriends6(friends);
 2: "Sanji is a friend with Luffy"
 3: "Sanji is a friend with Zoro"
 */
+
+///////////////////////////////////
+// Destructuring
+
+//ES5
+
+var shahid = ['Shahid',22];
+var name5 = shahid[0];
+var age5 = shahid[1];
+
+//ES6
+const[named6,aged6] = ['Shahid',22];
+
+console.log(`${named6} Age is ${aged6} `);
+
+//Shahid Age is 22 
+
+const obj =
+{
+    firstNamed : 'Shahid',
+    lastNamed : 'Dhariwala'
+};
+
+const {firstNamed,lastNamed} = obj;
+console.log(`${firstNamed} ${lastNamed}`);
+// Shahid Dhariwala
+const {firstNamed : a, lastNamed : b} = obj;
+
+console.log(`${a} ${b}`);
+// Shahid Dhariwala 
+
+
+function calcRetirementAge(year)
+{
+    const age = new Date().getFullYear() - year;
+    return [age,65-age];
+}
+
+const [agedd,timeTORetire] = calcRetirementAge(1998);
+
+console.log(`${agedd} ${timeTORetire}`);
+// 22 43
+
