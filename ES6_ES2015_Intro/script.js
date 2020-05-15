@@ -46,7 +46,7 @@ driversLicence5(true);
 
 // ES6
 function driversLicence6(passedTest) {
-   // console.log(firstName);
+    // console.log(firstName);
     // Will throw error ReferenceError: firstName is not defined
     let firstName;
     const yearOfBirth = 1998;
@@ -112,10 +112,10 @@ console.log(c);
 
 let firstName = "Shahid";
 let lastName = "Dhariwala";
-const yearOfBirth = 1990;
+const yearOfBirth = 1998;
 
 function calcAge(year) {
-    return 2016 - year;
+    return 2020 - year;
 }
 
 // ES5
@@ -145,11 +145,49 @@ console.log(n.includes("Dhar"));
 console.log(`${firstName} `.repeat(5));
 
 /*
-This is Shahid Dhariwala. He was born in 1990. Today, he is 26 years old.
-This is Shahid Dhariwala. He was born in 1990. Today, he is 26 years old.
+This is Shahid Dhariwala. He was born in 1998. Today, he is 22 years old.
+This is Shahid Dhariwala. He was born in 1998. Today, he is 22 years old.
 false
 true
 true
 Shahid Shahid Shahid Shahid Shahid */
 
 
+//////////////////////////////
+//Arrow function
+
+
+const years = [1998, 1990, 1993, 1996];
+
+//ES5
+var ages5 = years.map(function (curr) {
+    return 2020 - curr;
+});
+console.log(ages5);
+
+//ES6
+let ages6 = years.map(es => 2020 - es);
+console.log(ages6);
+/* 
+[ 22, 30, 27, 24 ]
+[ 22, 30, 27, 24 ] */
+
+ages6 = years.map((el, index) => `${index} Age : ${2020-el} `);
+console.log(ages6);
+
+//[ '0 Age : 22 ', '1 Age : 30 ', '2 Age : 27 ', '3 Age : 24 ' ]
+
+ages6 = years.map((el, index) => {
+    let date = new Date();
+    let year = date.getFullYear();
+    const age = year - el;
+    return `new ${index} Age : ${age} `
+
+});
+console.log(ages6);
+/*
+[ 'new 0 Age : 22 ',
+  'new 1 Age : 30 ',
+  'new 2 Age : 27 ',
+  'new 3 Age : 24 ' ]
+  */
