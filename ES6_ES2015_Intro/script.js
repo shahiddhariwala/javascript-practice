@@ -139,12 +139,17 @@ console.log(
 );
 
 const n = `${firstName} ${lastName}`;
-console.log(n.startsWith("j"));
-console.log(n.endsWith("Sm"));
-console.log(n.includes("oh"));
+console.log(n.startsWith("s"));
+console.log(n.endsWith("ala"));
+console.log(n.includes("Dhar"));
 console.log(`${firstName} `.repeat(5));
 
-
-
+/*
+This is Shahid Dhariwala. He was born in 1990. Today, he is 26 years old.
+This is Shahid Dhariwala. He was born in 1990. Today, he is 26 years old.
+false
+true
+true
+Shahid Shahid Shahid Shahid Shahid */
 
 
