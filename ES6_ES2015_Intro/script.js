@@ -317,9 +317,8 @@ const boxes = document.querySelectorAll(".box");
 
 var boxesArr5 = Array.prototype.slice.call(boxes);
 boxesArr5.forEach(function (curr) {
-    curr.style.backgroundColor = 'grey';
+    curr.style.backgroundColor = "grey";
 });
-
 
 //ES6
 
@@ -332,22 +331,21 @@ Array.from(boxes).forEach((curr) => (curr.style.backgroundColor = "grey"));
 
 //ES5
 for (var i = 0; i < boxesArr5.length; i++) {
-    if (boxesArr5[i].className === 'box blue') {
+    if (boxesArr5[i].className === "box blue") {
         continue;
     }
-    boxesArr5[i].textContent = 'I am Gray';
-
+    boxesArr5[i].textContent = "I am Gray";
 }
 
 //ES6
 for (const curr of boxesArr6) {
-    if (curr.className.includes('blue')) {
+    if (curr.className.includes("blue")) {
         continue;
     }
     curr.textContent = "I am not blue";
 }
 
-//ES5 
+//ES5
 
 var ages = [12, 13, 1, 4, 16, 19];
 var fullAge = ages.map(function (cur) {
@@ -363,16 +361,12 @@ console.log(ages[fullAge.indexOf(true)]);
  19
 */
 
-
 //ES6
-console.log(ages.findIndex(cur => cur >= 18)); //5
-console.log(ages.find(cur => cur >= 18)); //19
-
+console.log(ages.findIndex((cur) => cur >= 18)); //5
+console.log(ages.find((cur) => cur >= 18)); //19
 
 ////////////////////////////////
 // Spread operator
-
-
 
 var addFOurAges = function (a, b, c, d) {
     return a + b + c + d;
@@ -393,26 +387,24 @@ const sum3 = addFOurAges(...agesso);
 console.log(sum3);
 //82
 
-let luffyFamily = ['Luffy', 'Zoro', 'Nami', 'Sanji', 'Ussop'];
-let rogerFamily = ['Roger', 'Rayleigh', 'Crocus', 'Shank', 'Buggy'];
+let luffyFamily = ["Luffy", "Zoro", "Nami", "Sanji", "Ussop"];
+let rogerFamily = ["Roger", "Rayleigh", "Crocus", "Shank", "Buggy"];
 
-let pirateKingFamily = [...luffyFamily, 'Shahid', ...rogerFamily];
+let pirateKingFamily = [...luffyFamily, "Shahid", ...rogerFamily];
 console.log(pirateKingFamily);
 
 // ["Luffy", "Zoro", "Nami", "Sanji", "Ussop", "Shahid", "Roger", "Rayleigh", "Crocus", "Shank", "Buggy"]
 
-const h = document.querySelector('h1');
-const boxeso = document.querySelectorAll('.box');
+const h = document.querySelector("h1");
+const boxeso = document.querySelectorAll(".box");
 const allSo = [h, ...boxeso];
 
-Array.from(allSo).forEach(curr => curr.style.color = 'orange');
+Array.from(allSo).forEach((curr) => (curr.style.color = "orange"));
 
 //text color changed to orange
 
-
 /////////////////////////////////
 // Rest Parameter (in java we call it var-args)
-
 
 //ES5
 function isFullAge5() {
@@ -420,49 +412,41 @@ function isFullAge5() {
     var argsArr = Array.prototype.slice.call(arguments);
 
     argsArr.forEach(function (cur) {
-        console.log((2016 - cur) >= 18);
-    })
+        console.log(2016 - cur >= 18);
+    });
 }
-
 
 //isFullAge5(1990, 1999, 1965);
 //isFullAge5(1990, 1999, 1965, 2016, 1987);
 
-
 //ES6
 function isFullAge6(...years) {
-    years.forEach(cur => console.log((2016 - cur) >= 18));
+    years.forEach((cur) => console.log(2016 - cur >= 18));
 }
 
 isFullAge6(1990, 1999, 1965, 2016, 1987);
-
 
 //ES5
 function isFullAge5(limit) {
     var argsArr = Array.prototype.slice.call(arguments, 1);
 
     argsArr.forEach(function (cur) {
-        console.log((2016 - cur) >= limit);
-    })
+        console.log(2016 - cur >= limit);
+    });
 }
-
 
 //isFullAge5(16, 1990, 1999, 1965);
 isFullAge5(1990, 1999, 1965, 2016, 1987);
 
-
 //ES6
 function isFullAge6(limit, ...years) {
-    years.forEach(cur => console.log((2016 - cur) >= limit));
+    years.forEach((cur) => console.log(2016 - cur >= limit));
 }
 
 isFullAge6(16, 1990, 1999, 1965, 2016, 1987);
 
 ////////////////////////////////////
 //Default Parameters
-
-
-
 
 // ES5
 /* function DhariwalaPerson(firstName, yearOfBirth, lastName, nationality) {
@@ -479,18 +463,21 @@ isFullAge6(16, 1990, 1999, 1965, 2016, 1987);
 DhariwalaPerson {firstName: "Shahid", lastName: undefined, yearOfBirth: 1990, nationality: undefined}
 DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nationality: "American"} */
 
-
 //ES6
-function DhariwalaPerson(firstName, yearOfBirth, lastName = 'Dhariwala', nationality = 'Indian') {
+function DhariwalaPerson(
+    firstName,
+    yearOfBirth,
+    lastName = "Dhariwala",
+    nationality = "Indian"
+) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.yearOfBirth = yearOfBirth;
     this.nationality = nationality;
 }
 
-
-var shahiddp = new DhariwalaPerson('Shahid', 1990);
-var zaina = new DhariwalaPerson('Zaina', 1983, 'Thokar', 'American');
+var shahiddp = new DhariwalaPerson("Shahid", 1990);
+var zaina = new DhariwalaPerson("Zaina", 1983, "Thokar", "American");
 console.log(shahiddp);
 console.log(zaina);
 /* 
@@ -501,14 +488,17 @@ DhariwalaPerson {firstName: "Zaina", lastName: "Thokar", yearOfBirth: 1983, nat
 // Maps
 
 const question = new Map();
-question.set('question', 'What is the official name of the latest major JavaScript version?');
-question.set(1, 'ES5');
-question.set(2, 'ES6');
-question.set(3, 'ES2015');
-question.set(4, 'ES7');
-question.set('correct', 3);
-question.set(true, 'Correct answer :D');
-question.set(false, 'Wrong, please try again!');
+question.set(
+    "question",
+    "What is the official name of the latest major JavaScript version?"
+);
+question.set(1, "ES5");
+question.set(2, "ES6");
+question.set(3, "ES2015");
+question.set(4, "ES7");
+question.set("correct", 3);
+question.set(true, "Correct answer :D");
+question.set(false, "Wrong, please try again!");
 
 console.log(question);
 
@@ -527,7 +517,7 @@ size: (...)
 __proto__: Map
 */
 
-console.log(question.get('question'));
+console.log(question.get("question"));
 console.log(question.size);
 /*
 What is the official name of the latest major JavaScript version?
@@ -537,7 +527,7 @@ question.delete(4);
 console.log(question.get(4));
 //undefined
 
-question.set(4, 'ES7');
+question.set(4, "ES7");
 console.log(question.has(4));
 //true
 
@@ -570,7 +560,7 @@ question 		 What is the official name of the latest major JavaScript version?
 */
 
 for (let [key, value] of question.entries()) {
-    if (typeof (key) === 'number') {
+    if (typeof key === "number") {
         console.log(`${key} \t\t ${value}`);
     }
 }
@@ -583,7 +573,6 @@ for (let [key, value] of question.entries()) {
 // const ans = parseInt(prompt('Write the correct answer'));
 // console.log(question.get(ans === question.get('correct')));
 
-
 /////////////////////////////////
 // Classess
 
@@ -594,12 +583,12 @@ var Person5 = function (name, yearOfBirth, job) {
     this.job = job;
 };
 
-Person5.prototype.calculateAge= function(){
+Person5.prototype.calculateAge = function () {
     var age = new Date().getFullYear() - this.yearOfBirth;
     console.log(age);
-}
+};
 
-var shahid  = new Person5("Shahid",1998,"Engineer");
+var shahid = new Person5("Shahid", 1998, "Engineer");
 
 console.log(shahid);
 shahid.calculateAge();
@@ -607,38 +596,81 @@ shahid.calculateAge();
 // 22
 
 //ES6
-class Person6
-{
+class Person6 {
     constructor(name, yearOfBirth, job) {
         this.name = name;
         this.yearOfBirth = yearOfBirth;
         this.job = job;
     }
-    calculateAge(){
+    calculateAge() {
         var age = new Date().getFullYear() - this.yearOfBirth;
         console.log(age);
     }
 
-    static methodStatic()
-    {
+    static methodStatic() {
         console.log(`Hey Smarty!!`);
     }
-    
 }
 
-let  shahid6 = new Person6("Shahid",1998,"Engineer");
+let shahid6 = new Person6("Shahid", 1998, "Engineer");
 console.log(shahid6);
 shahid6.calculateAge();
 
 // Person6 {name: "Shahid", yearOfBirth: 1998, job: "Engineer"}
 // 22
 
-Person6.prototype.helloProtoInClass=function()
-{
+Person6.prototype.helloProtoInClass = function () {
     console.log(`Hello ${this.name} from class`);
-}
+};
 shahid6.helloProtoInClass();
 //Hello from class
 
 Person6.methodStatic();
 //Hey Smarty!!
+
+////////////////////////////
+// Inheritance , Classess with Subclasses
+
+//ES5
+
+var Athlete5 = function(name, yearOfBirth, job, olymicGames, medals) {
+    Person5.call(this, name, yearOfBirth, job);
+    this.olymicGames = olymicGames;
+    this.medals = medals;
+}
+
+Athlete5.prototype = Object.create(Person5.prototype);
+
+
+Athlete5.prototype.wonMedal = function() {
+    this.medals++;
+    console.log(this.medals);
+}
+
+var shahidAthelete5 = new Athlete5('Shahid', 1998, 'swimmer', 3, 10);
+
+shahidAthelete5.calculateAge(); // 22
+shahidAthelete5.wonMedal(); //11
+
+//ES6
+
+class Athlete6 extends Person6
+{
+    constructor(name,yearOfBirth,job,olymicGames,medals)
+    {
+        super(name,yearOfBirth,job);
+        this.olymicGames = olymicGames;
+        this.medals =medals;
+    }
+    wonMedal(){
+        this.medals++;
+        console.log(this.medals);
+    }
+
+}
+
+const shahidAthelete6 = new Athlete6('Shahid', 1998, 'swimmer', 3, 10);
+
+
+shahidAthelete6.calculateAge(); // 22
+shahidAthelete6.wonMedal(); //11
