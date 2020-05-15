@@ -584,3 +584,61 @@ for (let [key, value] of question.entries()) {
 // console.log(question.get(ans === question.get('correct')));
 
 
+/////////////////////////////////
+// Classess
+
+//ES5
+var Person5 = function (name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+};
+
+Person5.prototype.calculateAge= function(){
+    var age = new Date().getFullYear() - this.yearOfBirth;
+    console.log(age);
+}
+
+var shahid  = new Person5("Shahid",1998,"Engineer");
+
+console.log(shahid);
+shahid.calculateAge();
+// Person5 {name: "Shahid", yearOfBirth: 1998, job: "Engineer"}
+// 22
+
+//ES6
+class Person6
+{
+    constructor(name, yearOfBirth, job) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
+    }
+    calculateAge(){
+        var age = new Date().getFullYear() - this.yearOfBirth;
+        console.log(age);
+    }
+
+    static methodStatic()
+    {
+        console.log(`Hey Smarty!!`);
+    }
+    
+}
+
+let  shahid6 = new Person6("Shahid",1998,"Engineer");
+console.log(shahid6);
+shahid6.calculateAge();
+
+// Person6 {name: "Shahid", yearOfBirth: 1998, job: "Engineer"}
+// 22
+
+Person6.prototype.helloProtoInClass=function()
+{
+    console.log(`Hello ${this.name} from class`);
+}
+shahid6.helloProtoInClass();
+//Hello from class
+
+Person6.methodStatic();
+//Hey Smarty!!
