@@ -375,3 +375,45 @@ console.log(ages.findIndex(cur => cur >=18)); //5
 console.log(ages.find(cur => cur >=18)); //19
 
 
+////////////////////////////////
+// Spread operator
+
+
+
+var addFOurAges = function(a,b,c,d)
+{
+    return a+b+c+d;
+};
+
+var sum1 = addFOurAges(19,18,22,23);
+console.log(sum1);
+//82
+
+//ES5
+var agesso = [19,18,22,23];
+var sum2 = addFOurAges.apply(null,agesso);
+console.log(sum2);
+//82
+
+//ES6
+const sum3 = addFOurAges(...agesso);
+console.log(sum3);
+//82
+
+let  luffyFamily = ['Luffy','Zoro','Nami','Sanji','Ussop'];
+let  rogerFamily = ['Roger','Rayleigh','Crocus','Shank','Buggy'];
+
+let pirateKingFamily = [...luffyFamily,'Shahid',...rogerFamily];
+console.log(pirateKingFamily);
+
+// ["Luffy", "Zoro", "Nami", "Sanji", "Ussop", "Shahid", "Roger", "Rayleigh", "Crocus", "Shank", "Buggy"]
+
+const h = document.querySelector('h1');
+const  boxeso = document.querySelectorAll('.box');
+const  allSo = [h,...boxeso];
+
+Array.from(allSo).forEach(curr => curr.style.color = 'orange');
+
+//text color chnaged to orange
+
+
