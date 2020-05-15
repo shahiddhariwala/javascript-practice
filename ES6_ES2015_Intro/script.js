@@ -465,5 +465,8 @@ function isFullAge6(limit, ...years) {
 
 isFullAge6(16, 1990, 1999, 1965, 2016, 1987);
 
+////////////////////////////////////
+//Default Parameters
+
 
 
