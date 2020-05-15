@@ -191,3 +191,80 @@ console.log(ages6);
   'new 2 Age : 27 ',
   'new 3 Age : 24 ' ]
   */
+
+
+//Arrow function dont have their own this, insetad they use 'this' of fucntion they are called in
+//called as Lexical this
+
+
+//ES5
+
+var box5 = {
+    color: 'green',
+    position: 1,
+    clickMe: function () {
+        //When funbction is called , it doesnot share local this, its has access to global thios, there for color and position will be undefined
+        // to tackle this we can store local this to some variable
+        var self = this;
+        document.querySelector(".green").addEventListener('click', function () {
+            var str = "ES-5 This is box number " + self.position + " and it is " + self.color;
+            window.alert(str);
+        });
+    }
+}
+
+box5.clickMe();
+
+
+//ES6
+
+var box6 = {
+    color: 'green',
+    position: 1,
+    clickMe: function () {
+        //Arrow function uses lexical this of surrounding function
+        document.querySelector(".green").addEventListener('click', () => {
+            var str = "ES-6 This is box number " + this.position + " and it is " + this.color;
+            window.alert(str);
+        });
+    }
+}
+
+box6.clickMe();
+
+function Person(name) {
+    this.name = name;
+};
+
+var friends = ["Zain","Neha","Luffy","Zoro"];
+//ES5
+
+Person.prototype.myFriends5 = function (friends) {
+    var arr = friends.map(function (el) {
+        return this.name + " is a friend with " + el;
+    }.bind(this));
+    console.log(arr);
+};
+
+new Person("Shahid").myFriends5(friends);
+/*
+0: "Shahid is a friend with Zain"
+1: "Shahid is a friend with Neha"
+2: "Shahid is a friend with Luffy"
+3: "Shahid is a friend with Zoro"
+*/
+
+Person.prototype.myFriends6 = function (friends) {
+    var arr = friends.map((el =>
+        `${this.name} is a friend with ${el}`));
+
+    console.log(arr);
+};
+
+new Person("Sanji").myFriends6(friends);
+/*
+0: "Sanji is a friend with Zain"
+1: "Sanji is a friend with Neha"
+2: "Sanji is a friend with Luffy"
+3: "Sanji is a friend with Zoro"
+*/
