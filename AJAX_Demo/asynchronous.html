@@ -192,32 +192,56 @@ Date     : 16-May-2020
         //https://www.metaweather.com/api/ is not CORS enabled so we will be using 
         //crossorigin.me proxy to get access to metaweather
 
-        function getWeather(woeid)
-        {
+        function getWeather(woeid) {
             /*
             Examples
             /api/location/44418/ - London
             /api/location/2487956/ - San Francisco
             */
-        const proxyString = 'https://crossorigin.me/';
-
-        fetch(`${proxyString}https://www.metaweather.com/api/location/${woeid}/`)
-        .then(result => 
-        {
-            return result.json();
-        })
-        .then(data =>
-        {
-            const today = data.consolidated_weather[0];
-            console.log(`${data.title} has temp between ${today.min_temp} to ${today.max_temp} degree`);
-        })
-        .catch(error => console.log(error));
+            const proxyString = 'https://crossorigin.me/';
+            const proxyString2 = 'https://cors-anywhere.herokuapp.com/';
+            fetch(`${proxyString}https://www.metaweather.com/api/location/${woeid}/`)
+                .then(result => {
+                    return result.json();
+                })
+                .then(data => {
+                    const today = data.consolidated_weather[0];
+                    console.log(`${data.title} has temp between ${today.min_temp} to ${today.max_temp} degree`);
+                })
+                .catch(error => console.log(error));
         }
 
-        getWeather(44418);//london
+        getWeather(44418); //london
         getWeather(12586539); //Mumbai
 
 
+        /////////////////////////////////////
+        // Making AJAX call using fetch and Async/Await
+
+        async function getWeatherAW(woeid) {
+            try{
+            /*
+            Examples
+            /api/location/44418/ - London
+            /api/location/2487956/ - San Francisco
+            */
+            const proxyString = 'https://crossorigin.me/';
+            const proxyString2 = 'https://cors-anywhere.herokuapp.com/';
+
+            const result = await fetch(`${proxyString}https://www.metaweather.com/api/location/${woeid}/`);
+
+            const data = await result.json();
+            const today = data.consolidated_weather[0];
+            console.log(`${data.title} has temp between ${today.min_temp} to ${today.max_temp} degree`);
+            }
+            catch(error)
+            {
+                console.log(error);
+            }
+        }
+
+        getWeatherAW(44418); //london
+        getWeatherAW(12586539); //Mumbai
     </script>
 </body>
 
