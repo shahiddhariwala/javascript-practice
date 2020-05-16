@@ -122,7 +122,7 @@ Date     : 16-May-2020
         };
 
 
-        getIDs
+/*         getIDs
             .then(ids => {
                 console.log(ids)
                 return getRecipe(ids[2]);
@@ -136,12 +136,45 @@ Date     : 16-May-2020
                 console.log(rel);
             })
             .catch(error => console.log("error"));
-
+ */
             /*
             [523, 883, 432, 974]
             432: Fresh tomato pasta 
             Shahid Dhariwala Italian Pizza
             */
+
+            ///////////////////////////////
+            // Async / Await
+            /*
+            Makes consuming promises more easier
+            *we can produce promises like above
+            */
+            async function getRecipeAW()
+            {
+                // await can only be used inside the async function
+
+                const ids = await getIDs;
+                console.log(ids);
+                
+                const recipe = await getRecipe(ids[2]);
+                console.log(recipe);
+
+                const related  =  await getRelated("Shahid Dhariwala");
+                console.log(related);
+
+
+                return ids;
+                
+            }
+
+            getRecipeAW().then(id => console.log(`Recipe with ${id} ids are available`));
+            /*
+            [523, 883, 432, 974]
+            432: Fresh tomato pasta 
+            Shahid Dhariwala Italian Pizza
+            Recipe with 523,883,432,974 ids are available
+            */
+    
     </script>
 </body>
 
