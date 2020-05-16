@@ -122,59 +122,102 @@ Date     : 16-May-2020
         };
 
 
-/*         getIDs
-            .then(ids => {
-                console.log(ids)
-                return getRecipe(ids[2]);
-            })
-            .then(recipe => {
-                console.log(recipe);
-                return getRelated('Shahid Dhariwala');
-            })
-            .then(rel =>
-            {
-                console.log(rel);
-            })
-            .catch(error => console.log("error"));
- */
+        /*         getIDs
+                    .then(ids => {
+                        console.log(ids)
+                        return getRecipe(ids[2]);
+                    })
+                    .then(recipe => {
+                        console.log(recipe);
+                        return getRelated('Shahid Dhariwala');
+                    })
+                    .then(rel =>
+                    {
+                        console.log(rel);
+                    })
+                    .catch(error => console.log("error"));
+         */
+        /*
+        [523, 883, 432, 974]
+        432: Fresh tomato pasta 
+        Shahid Dhariwala Italian Pizza
+        */
+
+        ///////////////////////////////
+        // Async / Await
+        /*
+        Makes consuming promises more easier
+        *we can produce promises like above
+        */
+        async function getRecipeAW() {
+            // await can only be used inside the async function
+
+            const ids = await getIDs;
+            console.log(ids);
+
+            const recipe = await getRecipe(ids[2]);
+            console.log(recipe);
+
+            const related = await getRelated("Shahid Dhariwala");
+            console.log(related);
+
+
+            return ids;
+
+        }
+
+        getRecipeAW().then(id => console.log(`Recipe with ${id} ids are available`));
+        /*
+        [523, 883, 432, 974]
+        432: Fresh tomato pasta 
+        Shahid Dhariwala Italian Pizza
+        Recipe with 523,883,432,974 ids are available
+        */
+
+        /////////////////////////////////////
+        // Making AJAX call using fetch and promises
+        /*
+        A CORS proxy is a service that allows developers (probably you)
+         to access resources from other websites, 
+        without having to own that website.
+
+        How do I use it?
+        When you need to access a resource from a website that isn't CORS-enabled, 
+        add 'http://crossorigin.me' to the beginning of that URL.
+
+        For example, if you wanted to grab the Google homepage, your code would request
+        https://crossorigin.me/https://google.com
+        */
+
+        //https://www.metaweather.com/api/ is not CORS enabled so we will be using 
+        //crossorigin.me proxy to get access to metaweather
+
+        function getWeather(woeid)
+        {
             /*
-            [523, 883, 432, 974]
-            432: Fresh tomato pasta 
-            Shahid Dhariwala Italian Pizza
+            Examples
+            /api/location/44418/ - London
+            /api/location/2487956/ - San Francisco
             */
+        const proxyString = 'https://crossorigin.me/';
 
-            ///////////////////////////////
-            // Async / Await
-            /*
-            Makes consuming promises more easier
-            *we can produce promises like above
-            */
-            async function getRecipeAW()
-            {
-                // await can only be used inside the async function
+        fetch(`${proxyString}https://www.metaweather.com/api/location/${woeid}/`)
+        .then(result => 
+        {
+            return result.json();
+        })
+        .then(data =>
+        {
+            const today = data.consolidated_weather[0];
+            console.log(`${data.title} has temp between ${today.min_temp} to ${today.max_temp} degree`);
+        })
+        .catch(error => console.log(error));
+        }
 
-                const ids = await getIDs;
-                console.log(ids);
-                
-                const recipe = await getRecipe(ids[2]);
-                console.log(recipe);
-
-                const related  =  await getRelated("Shahid Dhariwala");
-                console.log(related);
+        getWeather(44418);//london
+        getWeather(12586539); //Mumbai
 
 
-                return ids;
-                
-            }
-
-            getRecipeAW().then(id => console.log(`Recipe with ${id} ids are available`));
-            /*
-            [523, 883, 432, 974]
-            432: Fresh tomato pasta 
-            Shahid Dhariwala Italian Pizza
-            Recipe with 523,883,432,974 ids are available
-            */
-    
     </script>
 </body>
 
