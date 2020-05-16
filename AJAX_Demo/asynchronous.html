@@ -21,7 +21,7 @@ Date     : 16-May-2020
         const second = () => {
             setTimeout(() => {
                 console.log("Async Hey There")
-            }, 2000)
+            }, 1000)
         };
         const first = () => {
             console.log('Hey there');
@@ -37,10 +37,45 @@ Date     : 16-May-2020
 
 
         Asynchronous JS
-        1. Allow async functions to run in "background";
+        1.  Allow async functions to run in "background";
         2.  We pass in callbacks that run once the fucntion has finished its work;
         3.  Work on immediately : Non - blocking !
         */
+
+
+        //Old Way : Call Back Hell
+        function getRecipe() {
+            setTimeout(() => {
+                const recipeID = [523, 883, 432, 974];
+                console.log(recipeID);
+
+                setTimeout(id => {
+                    const recipe = {
+                        title: 'Fresh tomato pasta',
+                        publisher: 'Shahid'
+                    };
+                    console.log(`${id}: ${recipe.title}`);
+
+                    setTimeout(publisher => {
+                        const recipe2 = {
+                            title: 'Italian Pizza',
+                            publisher: 'Shahid'
+                        };
+                        console.log(recipe2);
+                    }, 1500, recipe.publisher);
+
+                }, 1500, recipeID[2]);
+
+            }, 1500);
+        }
+        getRecipe();
+        /* 
+                [523, 883, 432, 974]
+                432: Fresh tomato pasta 
+                {
+                    title: "Italian Pizza",
+                    publisher: "Shahid"
+                } */
     </script>
 </body>
 
